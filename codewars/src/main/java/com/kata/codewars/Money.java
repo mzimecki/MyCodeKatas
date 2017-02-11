@@ -7,7 +7,7 @@ package com.kata.codewars;
  * and the new sum is re-invested yearly after paying tax 'T'.
  * Note that the principal is not taxed but only the year's accrued interest
  * 
- * @author M. Zimecki
+ * @author M. Zimecki - implementation
  */
 public class Money {
 	

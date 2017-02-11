@@ -10,8 +10,7 @@ public class ArgeTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void test1() {
-        System.out.println("Fixed Tests: nbYear");    
+    public void should_return_proper_number_of_years() {
         testing(Arge.nbYear(1500, 5, 100, 5000),15);
         testing(Arge.nbYear(1500000, 2.5, 10000, 2000000), 10);
         testing(Arge.nbYear(1500000, 0.25, 1000, 2000000), 94);

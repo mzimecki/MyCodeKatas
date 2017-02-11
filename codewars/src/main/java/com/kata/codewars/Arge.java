@@ -6,7 +6,7 @@ package com.kata.codewars;
  * per year come to live in the town. How many years does the town need to see its 
  * population greater or equal to p = 1200 inhabitants?
  * 
- * @author M. Zimecki
+ * @author M. Zimecki - implementation
  */
 public class Arge {
 	
