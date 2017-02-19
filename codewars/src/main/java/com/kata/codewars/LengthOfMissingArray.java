@@ -1,6 +1,7 @@
 package com.kata.codewars;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,20 +21,15 @@ import java.util.stream.Collectors;
 public class LengthOfMissingArray {
 	
 	public static int getLengthOfMissingArray(Object[][] arrayOfArrays) {
-		if (isArrayEmpty(arrayOfArrays)) {
-			return 0;
-		}
-
-		final List<Integer> sortedLengthsOfArrays = getSortedArraysLengths(arrayOfArrays);
-
-		if (containsZeroLength(sortedLengthsOfArrays)) {
-			return 0;
-		}
-
-		return findMissinArrayLength(sortedLengthsOfArrays);
+		return findMissinArrayLength(arrayOfArrays);
 	}
 
-	private static int findMissinArrayLength(final List<Integer> sortedLengthsOfArrays) {
+	private static int findMissinArrayLength(final Object[][] arrayOfArrays) {
+		final List<Integer> sortedLengthsOfArrays = getSumOfArraysLengths(arrayOfArrays);
+		if (sortedLengthsOfArrays.isEmpty()) {
+			return 0;
+		}
+
 		int j = sortedLengthsOfArrays.get(0);
 		for (int arrayLength : sortedLengthsOfArrays) {
 			if (arrayLength != j) {
@@ -44,18 +40,22 @@ public class LengthOfMissingArray {
 		return 0;
 	}
 
-	private static boolean containsZeroLength(List<Integer> sortedLengthsOfArrays) {
-		return sortedLengthsOfArrays.get(0) == 0;
-	}
-
-	private static List<Integer> getSortedArraysLengths(Object[][] arrayOfArrays) {
+	private static List<Integer> getSumOfArraysLengths(Object[][] arrayOfArrays) {
+		if (isArrayNullOrEmpty(arrayOfArrays) || containsNullArrayOrEmpty(arrayOfArrays)) {
+			return Collections.emptyList();
+		}
 		return Arrays.stream(arrayOfArrays)
-				.map(x -> x != null ? x.length : 0)
-				.sorted()
-				.collect(Collectors.toList());
+					.map(x -> x.length)
+					.sorted()
+					.collect(Collectors.toList()); 
+	}
+	
+	private static boolean containsNullArrayOrEmpty(Object[][] arrayOfArrays) {
+		return Arrays.stream(arrayOfArrays)
+				.anyMatch(array -> array == null || array.length == 0);
 	}
 
-	private static boolean isArrayEmpty(Object[][] arrayOfArrays) {
-		return arrayOfArrays == null || arrayOfArrays.length == 0;
+	private static boolean isArrayNullOrEmpty(Object[][] arrayOfArrays) {
+		return arrayOfArrays == null || arrayOfArrays.length == 0; 
 	}
 }

@@ -20,6 +20,6 @@ public class LengthOfMissingArrayTest {
 						new Object[] { 'a', 'a', 'a', 'a', 'a', 'a' } }));
 
 		assertEquals(0, LengthOfMissingArray.getLengthOfMissingArray(new Object[][] {}));
-		
+		assertEquals(0, LengthOfMissingArray.getLengthOfMissingArray(null));
 	}
 }
